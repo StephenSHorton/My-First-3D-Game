@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Rocket_Fly : MonoBehaviour
 {
-
+    [SerializeField] float rcsThrust = 200f;
+    [SerializeField] float mainThrust = 2.5f;
     Rigidbody rigidBody;
     AudioSource rocketThrust;
 
@@ -18,14 +19,30 @@ public class Rocket_Fly : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ProcessInput();
+        Thrust();
+        Rotate();
     }
 
-    private void ProcessInput()
+    private void OnCollisionEnter(Collision collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Friendly":
+                break;
+            case "Fuel":
+                print("Fuel grabbed");
+                break;
+            default:
+                print("You died");
+                break;
+        }
+    }
+
+    private void Thrust()
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            rigidBody.AddRelativeForce(Vector3.up);
+            rigidBody.AddRelativeForce(Vector3.up * mainThrust);
             if (!rocketThrust.isPlaying)
             {
                 rocketThrust.Play();
@@ -35,13 +52,21 @@ public class Rocket_Fly : MonoBehaviour
         {
             rocketThrust.Stop();
         }
+    }
+
+    private void Rotate()
+    {
+        rigidBody.freezeRotation = true; // take manual control of rotation
+        float rotationThisFrame = rcsThrust * Time.deltaTime;
+
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(Vector3.forward / 5);
+            transform.Rotate(Vector3.forward * rotationThisFrame);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(-Vector3.forward / 5);
+            transform.Rotate(-Vector3.forward * rotationThisFrame);
         }
+        rigidBody.freezeRotation = false; // resumes physics control of rotation
     }
 }
