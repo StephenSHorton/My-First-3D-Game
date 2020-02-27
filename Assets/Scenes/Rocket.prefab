@@ -393,7 +393,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9bd45283a0738c49be0b7814a4b9f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rcsThrust: 300
+  rcsThrust: 250
+  mainThrust: 2.5
 --- !u!82 &3447459362454258626
 AudioSource:
   m_ObjectHideFlags: 0
@@ -550,7 +551,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 24d7dd1e1c877844487a13bf803b4b99, type: 2}
+  - {fileID: 2100000, guid: a9b3a70613069914cb343b98026edac7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1269,7 +1270,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5bef01b0c724ef14fb87ac51b77d0490, type: 2}
+  - {fileID: 2100000, guid: 24d7dd1e1c877844487a13bf803b4b99, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1504,7 +1505,5 @@ MonoBehaviour:
   assetGuid: 
   m_IsSelectable: 1
   m_SelectedFaces: 
-  m_SelectedEdges:
-  - a: 15
-    b: 12
-  m_SelectedVertices: 0f0000000c000000
+  m_SelectedEdges: []
+  m_SelectedVertices: 
